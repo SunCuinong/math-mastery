@@ -93,6 +93,9 @@ img { display: block; max-width: 100%; }
 
 a { color: var(--primary); }
 
+/* hidden 属性必须生效：类选择器上的 display 会覆盖 UA 的 [hidden]{display:none} */
+[hidden] { display: none !important; }
+
 /* ==========================================================================
    布局
    ========================================================================== */
