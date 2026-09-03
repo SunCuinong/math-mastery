@@ -1,4 +1,4 @@
-# 数学错题本 (wrongbook)
+# 数学错题本 (math-mastery)
 
 手机拍照录题 → AI 识别题目（含公式与图形）→ Web 端管理 → 选题组卷、排版打印、重练巩固。
 
@@ -11,7 +11,7 @@
 ## 目录结构
 
 ```
-wrongbook/
+math-mastery/
 ├── server.py             # 后端：托管页面 + 上传 + Gemini 识别 + 题库读写
 ├── index.html / app.js   # 手机拍照端（拍照、框选、上传）
 ├── admin.html / admin.js # Web 管理端（题库管理、筛选、选题组卷）
@@ -44,7 +44,7 @@ wrongbook/
 仅需 Python 3 标准库，无第三方依赖：
 
 ```bash
-cd wrongbook
+cd math-mastery
 python3 server.py
 ```
 

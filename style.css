@@ -117,7 +117,7 @@ a { color: var(--primary); }
   font-weight: var(--fw-semibold);
 }
 .topbar .brand { display: inline-flex; align-items: center; }
-.topbar .brand img { width: 109px; height: 17px; }
+.topbar .brand img { width: 148px; height: 22px; }
 .topbar .link {
   font-size: var(--fs-12);
   color: var(--primary);
@@ -184,6 +184,7 @@ a { color: var(--primary); }
   width: 100%;
   padding: var(--space-16) var(--space-24);
   font-weight: var(--fw-semibold);
+  border-radius: var(--radius-8);
 }
 
 /* 小按钮 */
@@ -193,9 +194,9 @@ a { color: var(--primary); }
   justify-content: center;
   gap: var(--space-4);
   min-height: var(--space-24);
-  padding: var(--space-4) var(--space-8);
+  padding: var(--space-8) var(--space-16);
   border: 1px solid var(--border);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-8);
   background: var(--surface);
   color: var(--text);
   font-size: var(--fs-12);
@@ -308,7 +309,7 @@ a { color: var(--primary); }
   border: 1px solid var(--border);
   border-radius: var(--radius-8);
   background: var(--surface);
-  font-size: var(--fs-14);
+  font-size: var(--fs-12);
 }
 .toolbar input { flex: 1; min-width: 0; }
 .toolbar select { min-width: 132px; }
@@ -408,7 +409,7 @@ a { color: var(--primary); }
 /* 图标字体 */
 .material-symbols-rounded {
   font-family: 'Material Symbols Rounded';
-  font-size: var(--fs-20);
+  font-size: 20px;
   font-weight: var(--fw-regular);
   font-style: normal;
   line-height: 1;

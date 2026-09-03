@@ -432,9 +432,6 @@ class Handler(BaseHTTPRequestHandler):
     def _serve_static(self, path):
         if path in ("", "/"):
             path = "/index.html"
-        if not path.startswith("/wrongbook") and path != "/index.html":
-            # 允许直接访问项目内静态文件
-            pass
         rel = path.lstrip("/")
         if rel == "" or rel.endswith("/"):
             rel += "index.html"

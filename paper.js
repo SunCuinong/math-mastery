@@ -36,7 +36,7 @@ function svgDataUrl(svg) {
 }
 
 function persistPaper() {
-  sessionStorage.setItem('wrongbook-paper', JSON.stringify(paperQuestions));
+  sessionStorage.setItem('math-mastery-paper', JSON.stringify(paperQuestions));
 }
 
 function render() {
@@ -130,7 +130,7 @@ function bindQuestionActions() {
 
 function loadPaper() {
   try {
-    const saved = JSON.parse(sessionStorage.getItem('wrongbook-paper') || '[]');
+    const saved = JSON.parse(sessionStorage.getItem('math-mastery-paper') || '[]');
     paperQuestions = Array.isArray(saved) ? saved.filter(q => q && q.text) : [];
   } catch (error) {
     paperQuestions = [];
@@ -151,7 +151,7 @@ $('#createPaperBtn').addEventListener('click', async event => {
     });
     const data = await response.json();
     if (!response.ok || !data.ok || !data.paper) throw new Error(data.error || '生成失败');
-    sessionStorage.removeItem('wrongbook-paper');
+    sessionStorage.removeItem('math-mastery-paper');
     window.location.href = 'admin.html';
   } catch (error) {
     alert(`试卷生成失败：${error.message || error}`);

@@ -479,7 +479,7 @@ function openPaper(questionsForPaper) {
     alert('请先选择至少一道题。');
     return;
   }
-  sessionStorage.setItem('wrongbook-paper', JSON.stringify(questionsForPaper));
+  sessionStorage.setItem('math-mastery-paper', JSON.stringify(questionsForPaper));
   window.location.href = 'paper.html';
 }
 
