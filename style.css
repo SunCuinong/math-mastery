@@ -718,25 +718,11 @@ a { color: var(--primary); }
   height: var(--space-8);
   border-radius: 50%;
 }
-.result-dot.correct { background: #4ecb3b; }
-.result-dot.wrong { background: #e82616; }
+.result-dot.correct { background: #22c55e; }
+.result-dot.wrong { background: #f59e0b; }
 .history-more { color: var(--text-subtle); font-size: var(--fs-12); }
 .history-empty { color: var(--text-muted); }
-.history-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-24);
-  height: var(--space-24);
-  padding: 0;
-  border: 1px solid var(--primary);
-  border-radius: var(--radius-40);
-  background: var(--surface);
-  color: var(--primary);
-  font-size: var(--fs-12);
-  font-weight: var(--fw-bold);
-  cursor: pointer;
-}
+/* 历史按钮统一使用 .icon-btn（右上角时钟按钮，圆角 8 / 40px），不再有独立小圆样式 */
 
 /* 组卷选择 */
 .paper-checkbox {

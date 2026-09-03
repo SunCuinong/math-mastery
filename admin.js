@@ -99,6 +99,8 @@ async function loadQuestions() {
     questions = [];
     statusBar.textContent = '⚠️ 题库加载失败';
   }
+  // 「未掌握(new)」状态已合并入「巩固中(learning)」：旧数据在此统一迁移
+  questions.forEach(q => { if (q.status === 'new') q.status = 'learning'; });
   render();
 }
 
@@ -174,8 +176,10 @@ function render() {
 
   shown.forEach(q => {
     const idx = questions.findIndex(item => item.id === q.id);
-    const label = q.status === 'new' ? '未掌握' : q.status === 'learning' ? '巩固中' : '已掌握';
-    const cls = q.status === 'new' ? 'new' : q.status === 'learning' ? 'learning' : 'mastered';
+    // 状态只有两种：巩固中 / 已掌握（原「未掌握」已合并入巩固中）
+    const learned = q.status === 'mastered';
+    const label = learned ? '已掌握' : '巩固中';
+    const cls = learned ? 'mastered' : 'learning';
     const isActive = editingId && editingId === q.id;
 
     const card = document.createElement('div');
@@ -188,6 +192,7 @@ function render() {
       <div class="q-main">
         <div class="q-meta">
           <span class="badge ${cls}">${label}</span>
+          ${renderHistoryDots(q)}
         </div>
 
         <div class="q-block" data-field="text" data-idx="${idx}">
@@ -216,11 +221,12 @@ function render() {
 
 function renderHistoryDots(question) {
   const history = Array.isArray(question.history) ? question.history : [];
+  // 查看历史统一使用右上角的时钟按钮（icon-btn），此处仅展示结果圆点
   if (!history.length) return '<span class="history-empty">暂无练习记录</span>';
   const visible = history.slice(-8);
   const dots = visible.map(item => `<span class="result-dot ${item.correct ? 'correct' : 'wrong'}" title="${item.correct ? '正确' : '错误'}"></span>`).join('');
   const extra = history.length > visible.length ? `<span class="history-more">+${history.length - visible.length}</span>` : '';
-  return `<span class="history-dots" aria-label="答题记录">${dots}${extra}</span><button class="history-info" data-id="${escapeHtml(question.id)}" type="button" aria-label="查看答题记录">i</button>`;
+  return `<span class="history-dots" aria-label="答题记录">${dots}${extra}</span>`;
 }
 
 function renderPapers() {
@@ -412,7 +418,7 @@ function openEditor(id) {
   if (!q) return;
   editingId = id;
   editTopic.value = q.topic || '';
-  editStatus.value = q.status || 'new';
+  editStatus.value = (q.status === 'mastered') ? 'mastered' : 'learning';
   editText.value = q.text || '';
   editAnswer.value = q.answer || '';
   editorPanel.hidden = false;

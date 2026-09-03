@@ -183,7 +183,7 @@ def normalize_question(item):
         "figure_desc": str(item.get("figure_desc", "")).strip(),
         "topic": str(item.get("topic", "")).strip(),
         "answer": str(item.get("answer", "")).strip(),
-        "status": str(item.get("status", "new")).strip() or "new",
+        "status": str(item.get("status", "learning")).strip() or "learning",
         "streak": int(item.get("streak", 0) or 0),
         "history": item.get("history") if isinstance(item.get("history"), list) else [],
         "cleanFigureSvg": str(item.get("cleanFigureSvg", "")).strip(),
@@ -562,7 +562,7 @@ class Handler(BaseHTTPRequestHandler):
                 "figure_desc": info["figure_desc"] if info else "",
                 "topic": info["topic"] if info else "",
                 "answer": info["answer"] if info else "",
-                "status": "new",        # new / learning / mastered
+                "status": "learning",   # learning / mastered
                 "streak": 0,
                 "history": [],
                 "createdAt": now_iso(),
@@ -616,7 +616,7 @@ class Handler(BaseHTTPRequestHandler):
                     if "topic" in payload:
                         merged["topic"] = payload.get("topic", "")
                     if "status" in payload:
-                        merged["status"] = payload.get("status", "new")
+                        merged["status"] = payload.get("status", "learning")
                     updated = normalize_question(merged)
                     items[i] = updated
                     break
@@ -827,7 +827,7 @@ class Handler(BaseHTTPRequestHandler):
                 history.append({"at": completed_at, "correct": correct, "paperId": paper_id})
                 normalized["history"] = history
                 normalized["streak"] = normalized["streak"] + 1 if correct else 0
-                normalized["status"] = "mastered" if normalized["streak"] >= 3 else ("learning" if correct else "new")
+                normalized["status"] = "mastered" if normalized["streak"] >= 3 else "learning"
                 question.update(normalized)
 
             paper["status"] = "completed"
