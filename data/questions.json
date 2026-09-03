@@ -1,1 +1,194 @@
-[]
+[
+  {
+    "id": "q_0787664f86",
+    "image": "uploads/20260903_122719_c6fe54.jpg",
+    "text": "3. 在计算 $\\frac{3}{8} \\div 2$ 时，六（1）班明明、丽丽、君君、洋洋四位同学有各自不同的计算方法，计算方法正确的（    ）。\n\n明明：$\\frac{3}{8} \\div 2 = \\frac{3}{8} \\times \\frac{1}{2}$\n丽丽：$\\frac{3}{8} \\div 2 = \\frac{3 \\div 2}{8}$\n君君：$\\frac{3}{8} \\div 2 = \\frac{6}{16} \\div 2 = \\frac{6 \\div 2}{16}$\n洋洋：$\\frac{3}{8} \\div 2 = \\frac{3}{8 \\div 2}$\n\nA. 只有明明\nB. 只有丽丽和洋洋\nC. 只有明明和君君\nD. 只有明明、丽丽和君君",
+    "has_figure": false,
+    "figure_desc": "",
+    "topic": "分数除法",
+    "answer": "D",
+    "status": "learning",
+    "streak": 1,
+    "history": [
+      {
+        "at": "2026-09-03T13:16:09",
+        "correct": true,
+        "paperId": "paper_54fdc11082"
+      }
+    ],
+    "createdAt": "2026-09-03T12:27:28",
+    "ocrError": ""
+  },
+  {
+    "id": "q_86a9337702",
+    "image": "uploads/20260903_122951_1455b5.jpg",
+    "text": "5. 敦煌莫高窟是我国著名的世界文化遗产，文物保护工匠正在对洞窟壁画进行修复保护。现有一块 $\\frac{16}{17}\\text{ m}^2$ 的壁画需要修复，计划 $4$ 天完成，平均每天需要修复多少平方米？",
+    "has_figure": false,
+    "figure_desc": "",
+    "topic": "分数除法",
+    "answer": "$\\frac{4}{17}\\text{ m}^2$",
+    "status": "learning",
+    "streak": 1,
+    "history": [
+      {
+        "at": "2026-09-03T13:16:09",
+        "correct": true,
+        "paperId": "paper_54fdc11082"
+      }
+    ],
+    "createdAt": "2026-09-03T12:29:56",
+    "ocrError": ""
+  },
+  {
+    "id": "q_69a6eb8c0f",
+    "image": "uploads/20260903_123129_a0e6b7.jpg",
+    "text": "2. 下列算式，计算正确的是( )。\nA. $\\frac{4}{5} \\div 3 = \\frac{5}{4} \\times \\frac{1}{3}$\nB. $\\frac{4}{5} \\div 3 = \\frac{4}{5} \\times \\frac{1}{3}$\nC. $\\frac{4}{5} \\div 3 = 3 \\times \\frac{4}{5}$\nD. $\\frac{4}{5} \\div 3 = \\frac{5}{4} \\times 3$",
+    "has_figure": false,
+    "figure_desc": "",
+    "topic": "分数除法",
+    "answer": "B",
+    "status": "learning",
+    "streak": 2,
+    "history": [
+      {
+        "at": "2026-09-03T13:16:09",
+        "correct": false,
+        "paperId": "paper_54fdc11082"
+      },
+      {
+        "at": "2026-09-03T13:18:11",
+        "correct": true,
+        "paperId": "paper_3ce18001c1"
+      },
+      {
+        "at": "2026-09-03T13:18:32",
+        "correct": true,
+        "paperId": "paper_24f6844b86"
+      }
+    ],
+    "createdAt": "2026-09-03T12:31:36",
+    "ocrError": ""
+  },
+  {
+    "id": "q_1b0532e9ef",
+    "image": "uploads/20260903_123136_938468.jpg",
+    "text": "敦煌莫高窟是我国著名的世界文化遗产，文物保护工匠正在对洞窟壁画进行修复保护。现有一块 $\\frac{16}{17}\\text{ m}^2$ 的壁画需要修复，计划 $4$ 天完成，平均每天需要修复多少平方米？",
+    "has_figure": false,
+    "figure_desc": "",
+    "topic": "分数除法",
+    "answer": "$\\frac{4}{17}\\text{ m}^2$",
+    "status": "mastered",
+    "streak": 3,
+    "history": [
+      {
+        "at": "2026-09-03T13:16:09",
+        "correct": true,
+        "paperId": "paper_54fdc11082"
+      },
+      {
+        "at": "2026-09-03T13:18:11",
+        "correct": true,
+        "paperId": "paper_3ce18001c1"
+      },
+      {
+        "at": "2026-09-03T13:18:32",
+        "correct": true,
+        "paperId": "paper_24f6844b86"
+      }
+    ],
+    "createdAt": "2026-09-03T12:31:42",
+    "ocrError": ""
+  },
+  {
+    "id": "q_8211ad3f20",
+    "image": "uploads/20260903_133107_3deee4.jpg",
+    "text": "1. 先画一画，涂一涂，再用算式表示结果。\n(1) 把一条彩带的 $\\frac{4}{7}$ 平均分成 $2$ 份，每份是这条彩带的几分之几？\n(2) 把一张纸的 $\\frac{8}{9}$ 平均分成 $3$ 份，每份是这张纸的几分之几？",
+    "has_figure": true,
+    "figure_desc": "(1) 一条长方形彩带示意图，被划分为2行7列的网格；\n(2) 一张大长方形纸示意图，被划分为3行9列的网格。",
+    "topic": "分数除法",
+    "answer": "(1) $\\frac{4}{7} \\div 2 = \\frac{2}{7}$\n(2) $\\frac{8}{9} \\div 3 = \\frac{8}{27}$",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "createdAt": "2026-09-03T13:31:15",
+    "ocrError": ""
+  },
+  {
+    "id": "q_f39ac6ca28",
+    "image": "uploads/20260903_134110_2b57fd.jpg",
+    "text": "1. 先画一画，涂一涂，再用算式表示结果。\n(1) 把一条彩带的 $\\frac{4}{7}$ 平均分成 2 份，每份是这条彩带的几分之几？\n(2) 把一张纸的 $\\frac{8}{9}$ 平均分成 3 份，每份是这张纸的几分之几？",
+    "has_figure": true,
+    "figure_desc": "(1) 一个长方形条图，横向被平均分为 7 列，纵向被平均分为 2 行，共 14 个小方格。\n(2) 一个大长方形，横向被平均分为 9 列，纵向被平均分为 3 行，共 27 个小方格。",
+    "topic": "分数除法",
+    "answer": "(1) $\\frac{4}{7} \\div 2 = \\frac{2}{7}$\n(2) $\\frac{8}{9} \\div 3 = \\frac{8}{27}$",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "cleanFigureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 310\" width=\"100%\" height=\"100%\">\n  <style>\n    .label { font-family: \"SimSun\", \"STSong\", sans-serif; font-size: 16px; font-weight: bold; }\n    .outer-rect { fill: none; stroke: #000000; stroke-width: 2; stroke-linejoin: round; }\n    .inner-line { stroke: #000000; stroke-width: 1.2; stroke-linecap: round; }\n  </style>\n\n  <!-- Graphic (1) -->\n  <text x=\"30\" y=\"58\" class=\"label\">(1)</text>\n  <g id=\"diagram-1\">\n    <rect x=\"70\" y=\"30\" width=\"420\" height=\"45\" class=\"outer-rect\"/>\n    <line x1=\"130\" y1=\"30\" x2=\"130\" y2=\"75\" class=\"inner-line\"/>\n    <line x1=\"190\" y1=\"30\" x2=\"190\" y2=\"75\" class=\"inner-line\"/>\n    <line x1=\"250\" y1=\"30\" x2=\"250\" y2=\"75\" class=\"inner-line\"/>\n    <line x1=\"310\" y1=\"30\" x2=\"310\" y2=\"75\" class=\"inner-line\"/>\n    <line x1=\"370\" y1=\"30\" x2=\"370\" y2=\"75\" class=\"inner-line\"/>\n    <line x1=\"430\" y1=\"30\" x2=\"430\" y2=\"75\" class=\"inner-line\"/>\n  </g>\n\n  <!-- Graphic (2) -->\n  <text x=\"30\" y=\"195\" class=\"label\">(2)</text>\n  <g id=\"diagram-2\">\n    <rect x=\"70\" y=\"105\" width=\"405\" height=\"180\" class=\"outer-rect\"/>\n    <line x1=\"115\" y1=\"105\" x2=\"115\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"160\" y1=\"105\" x2=\"160\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"205\" y1=\"105\" x2=\"205\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"250\" y1=\"105\" x2=\"250\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"295\" y1=\"105\" x2=\"295\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"340\" y1=\"105\" x2=\"340\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"385\" y1=\"105\" x2=\"385\" y2=\"285\" class=\"inner-line\"/>\n    <line x1=\"430\" y1=\"105\" x2=\"430\" y2=\"285\" class=\"inner-line\"/>\n  </g>\n</svg>",
+    "cleanOriginalImage": "uploads/cleaned_20260903_140956_e8c998.jpg",
+    "createdAt": "2026-09-03T13:41:17",
+    "ocrError": ""
+  },
+  {
+    "id": "q_95d3d9c36b",
+    "image": "uploads/20260903_134500_e656af.jpg",
+    "text": "1. 求涂色部分的面积。",
+    "has_figure": true,
+    "figure_desc": "图中是一个两条直角边长均为 $5\\text{ cm}$ 的等腰直角三角形，分别以两条直角边为直径向三角形内部画半圆。两个半圆相交于斜边的中点，将两个半圆分割成三个相同的弓形涂色区域。",
+    "topic": "平面图形的面积",
+    "answer": "$5.34375\\text{ cm}^2$（取 $\\pi = 3.14$）",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "cleanFigureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 250\" width=\"100%\" height=\"100%\">\n  <style>\n    .title-text { font-family: \"SimSun\", \"STSong\", \"Songti SC\", serif; font-size: 18px; font-weight: bold; fill: #000; }\n    .label-text { font-family: \"Times New Roman\", \"SimSun\", serif; font-size: 16px; fill: #000; }\n    .line-main { stroke: #000; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }\n    .line-dim { stroke: #000; stroke-width: 1; fill: none; }\n    .shaded { fill: #b8cbd8; stroke: none; }\n  </style>\n\n  <!-- Title Text -->\n  <text x=\"20\" y=\"40\" class=\"title-text\">1. 求涂色部分的面积。</text>\n\n  <!-- Geometry Figure -->\n  <g>\n    <!-- Shaded Regions -->\n    <!-- Top-right segment -->\n    <path d=\"M 310 120 L 370 60 A 60 60 0 0 0 310 120 Z\" class=\"shaded\" />\n    \n    <!-- Bottom-left segment -->\n    <path d=\"M 250 180 L 310 120 A 60 60 0 0 0 250 180 Z\" class=\"shaded\" />\n    \n    <!-- Bottom-right petal -->\n    <path d=\"M 310 120 A 60 60 0 0 1 370 180 A 60 60 0 0 1 310 120 Z\" class=\"shaded\" />\n\n    <!-- Geometry Outlines -->\n    <!-- Horizontal Semicircle -->\n    <path d=\"M 250 180 A 60 60 0 0 1 370 180\" class=\"line-main\" />\n    \n    <!-- Vertical Semicircle -->\n    <path d=\"M 370 180 A 60 60 0 0 1 370 60\" class=\"line-main\" />\n    \n    <!-- Base Segment -->\n    <line x1=\"250\" y1=\"180\" x2=\"370\" y2=\"180\" class=\"line-main\" />\n    \n    <!-- Vertical Segment -->\n    <line x1=\"370\" y1=\"180\" x2=\"370\" y2=\"60\" class=\"line-main\" />\n    \n    <!-- Diagonal Segment -->\n    <line x1=\"250\" y1=\"180\" x2=\"370\" y2=\"60\" class=\"line-main\" />\n\n    <!-- Dimension Lines -->\n    <!-- Bottom Dimension (5 cm) -->\n    <line x1=\"250\" y1=\"180\" x2=\"250\" y2=\"202\" class=\"line-dim\" />\n    <line x1=\"370\" y1=\"180\" x2=\"370\" y2=\"202\" class=\"line-dim\" />\n    <line x1=\"250\" y1=\"197\" x2=\"370\" y2=\"197\" class=\"line-dim\" />\n    <circle cx=\"310\" cy=\"197\" r=\"2\" fill=\"#000\" />\n    <text x=\"310\" y=\"217\" class=\"label-text\" text-anchor=\"middle\">5 cm</text>\n\n    <!-- Right Dimension (5 cm) -->\n    <line x1=\"370\" y1=\"60\" x2=\"392\" y2=\"60\" class=\"line-dim\" />\n    <line x1=\"370\" y1=\"180\" x2=\"392\" y2=\"180\" class=\"line-dim\" />\n    <line x1=\"387\" y1=\"60\" x2=\"387\" y2=\"180\" class=\"line-dim\" />\n    <circle cx=\"387\" cy=\"120\" r=\"2\" fill=\"#000\" />\n    <text x=\"397\" y=\"125\" class=\"label-text\" text-anchor=\"start\">5 cm</text>\n  </g>\n</svg>",
+    "createdAt": "2026-09-03T13:45:24",
+    "ocrError": ""
+  },
+  {
+    "id": "q_94cb592826",
+    "image": "uploads/20260903_134734_cf48d1.jpg",
+    "text": "下图中圆的面积与长方形的面积相等，圆的周长是 $25.12\\text{ dm}$，求涂色部分的面积。",
+    "has_figure": true,
+    "figure_desc": "一个圆与一个长方形相交，圆心位于长方形的左上角顶点，长方形的宽等于圆的半径。圆与长方形重叠部分为一个半径为 $r$ 的 $\\frac{1}{4}$ 圆扇形。长方形去除重叠部分后的区域为涂色部分。",
+    "topic": "圆的周长与面积",
+    "answer": "$37.68\\text{ dm}^2$",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "cleanFigureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 160\" width=\"100%\" height=\"100%\">\n  <path d=\"M 150 80 L 278 80 L 278 140 L 90 140 A 60 60 0 0 0 150 80 Z\" fill=\"#a0a0a0\" />\n  <circle cx=\"90\" cy=\"80\" r=\"60\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" />\n  <rect x=\"90\" y=\"80\" width=\"188\" height=\"60\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" />\n  <line x1=\"90\" y1=\"80\" x2=\"90\" y2=\"140\" stroke=\"#000000\" stroke-width=\"2\" stroke-dasharray=\"4,4\" />\n  <circle cx=\"90\" cy=\"80\" r=\"3\" fill=\"#000000\" />\n</svg>",
+    "cleanOriginalImage": "uploads/cleaned_20260903_140328_78fbde.jpg",
+    "createdAt": "2026-09-03T13:47:51",
+    "ocrError": ""
+  },
+  {
+    "id": "q_3f11303cb6",
+    "image": "uploads/20260903_134751_6d818f.jpg",
+    "text": "8. 如图，正方形 $ABCD$ 的边长是 $6\\text{ cm}$，长方形 $DEFG$ 的长是 $7.5\\text{ cm}$，则宽是多少厘米？",
+    "has_figure": true,
+    "figure_desc": "包含一个正方形 $ABCD$ 和一个长方形 $DEFG$。点 $G$ 在正方形边 $BC$ 上，点 $A$ 在长方形边 $EF$ 上，连接 $DG$ 和 $AG$。",
+    "topic": "平面几何 / 组合图形面积",
+    "answer": "$4.8\\text{ cm}$",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "cleanFigureSvg": "",
+    "createdAt": "2026-09-03T13:48:01",
+    "ocrError": ""
+  },
+  {
+    "id": "q_daabb200ab",
+    "image": "uploads/20260903_140205_2a0742.jpg",
+    "text": "6. 如图，平行四边形 $ABCD$ 的面积是 $600\\text{ cm}^2$，求图中阴影部分的面积和圆的面积。",
+    "has_figure": true,
+    "figure_desc": "平行四边形 $ABCD$ 中，底边 $DC$ 为圆 $O$ 的直径，点 $O$ 为圆心。顶点 $B$ 在圆周上，阴影部分为三角形 $BOC$。",
+    "topic": "平面几何 / 组合图形的面积",
+    "answer": "阴影部分的面积：$150\\text{ cm}^2$\n圆的面积：$942\\text{ cm}^2$",
+    "status": "new",
+    "streak": 0,
+    "history": [],
+    "cleanFigureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 260\" width=\"100%\" height=\"100%\">\n  <polygon points=\"200,150 200,70 280,150\" fill=\"#555\" />\n  <circle cx=\"200\" cy=\"150\" r=\"80\" fill=\"none\" stroke=\"#000\" stroke-width=\"2\" />\n  <polygon points=\"40,70 200,70 280,150 120,150\" fill=\"none\" stroke=\"#000\" stroke-width=\"2\" />\n  <line x1=\"200\" y1=\"150\" x2=\"200\" y2=\"70\" stroke=\"#000\" stroke-width=\"2\" />\n  <circle cx=\"200\" cy=\"150\" r=\"3\" fill=\"#000\" />\n  <g font-family=\"Times New Roman, serif\" font-style=\"italic\" font-size=\"18\" fill=\"#000\">\n    <text x=\"32\" y=\"68\" text-anchor=\"end\">A</text>\n    <text x=\"200\" y=\"58\" text-anchor=\"middle\">B</text>\n    <text x=\"292\" y=\"156\" text-anchor=\"start\">C</text>\n    <text x=\"108\" y=\"156\" text-anchor=\"end\">D</text>\n    <text x=\"200\" y=\"174\" text-anchor=\"middle\">O</text>\n  </g>\n</svg>",
+    "cleanOriginalImage": "",
+    "createdAt": "2026-09-03T14:02:15",
+    "ocrError": ""
+  }
+]

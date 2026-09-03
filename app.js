@@ -22,6 +22,7 @@ let boxes = [];         // 已确认的框（原图坐标）{x,y,w,h}
 let drawing = null;     // 正在拖拽的框
 let viewScale = 1;      // 显示尺寸 / 原图尺寸
 let uploading = false;
+const MATH_TOKEN = '\u0000MATH\u0000';
 
 /* ============ 服务状态 ============ */
 async function checkStatus() {
@@ -41,6 +42,28 @@ async function checkStatus() {
   }
 }
 checkStatus();
+
+function renderMath(raw) {
+  if (!raw) return '';
+  if (typeof katex === 'undefined') return escapeHtml(String(raw)).replace(/\n/g, '<br>');
+  let parts = [];
+  let text = String(raw).replace(/\$\$([\s\S]+?)\$\$|\$([^$\n]+?)\$/g, (m, d, i) => {
+    const expr = d !== undefined ? d : i;
+    const displayMode = d !== undefined;
+    parts.push({ expr, displayMode });
+    return MATH_TOKEN + (parts.length - 1) + MATH_TOKEN;
+  });
+  text = escapeHtml(text);
+  text = text.replace(new RegExp(MATH_TOKEN + '(\\d+)' + MATH_TOKEN, 'g'), (m, idx) => {
+    const part = parts[Number(idx)];
+    return katex.renderToString(part.expr, {
+      throwOnError: false,
+      displayMode: part.displayMode,
+      output: 'html'
+    });
+  });
+  return text.replace(/\n/g, '<br>');
+}
 
 /* ============ 选图 ============ */
 $('#cameraBtn').addEventListener('click', () => fileInput.click());
@@ -262,6 +285,7 @@ uploadBtn.addEventListener('click', async () => {
   progressEl.hidden = false;
 
   const results = [];
+  let hasError = false;
   for (let i = 0; i < boxes.length; i++) {
     progressEl.textContent = `正在识别第 ${i + 1} / ${boxes.length} 题…`;
     const card = document.createElement('div');
@@ -283,17 +307,19 @@ uploadBtn.addEventListener('click', async () => {
         const q = d.question;
         card.innerHTML = `
           <div class="res-head">第 ${i + 1} 题 · ${escapeHtml(q.topic || '未分类')}</div>
-          <div class="res-body">${escapeHtml(q.text || '(未识别到文字)')}</div>
-          ${q.answer ? `<div class="res-answer">答案：${escapeHtml(q.answer)}</div>` : ''}
+          <div class="res-body">${renderMath(q.text || '(未识别到文字)')}</div>
+          ${q.answer ? `<div class="res-answer">答案：${renderMath(q.answer)}</div>` : ''}
           ${q.has_figure ? `<div class="res-fig">🖼 图形：${escapeHtml(q.figure_desc)}</div>` : ''}
           ${q.ocrError ? `<div class="res-err">⚠️ ${escapeHtml(q.ocrError)}</div>` : ''}`;
       } else {
+        hasError = true;
         card.classList.remove('loading');
         card.classList.add('error');
         card.innerHTML = `<div class="res-head">第 ${i + 1} 题</div>
           <div class="res-err">识别失败：${escapeHtml(d.error || '未知错误')}</div>`;
       }
     } catch (e) {
+      hasError = true;
       card.classList.remove('loading');
       card.classList.add('error');
       card.innerHTML = `<div class="res-head">第 ${i + 1} 题</div>
@@ -305,6 +331,12 @@ uploadBtn.addEventListener('click', async () => {
   uploading = false;
   uploadBtn.disabled = false;
   checkStatus();
+
+  if (!hasError && results.length > 0) {
+    progressEl.hidden = false;
+    progressEl.textContent = '识别完成，正在跳转到管理端…';
+    window.location.href = 'admin.html';
+  }
 });
 
 $('#continueBtn').addEventListener('click', () => resetAll());

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>试卷 PDF 预览</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+</head>
+<body class="paper-page">
+  <header class="topbar"><h1>试卷 PDF 预览</h1></header>
+  <main class="paper-wrap"><div id="viewStatus" class="status-bar">加载试卷中…</div><div id="viewPages" class="paper-pages" hidden></div></main>
+  <div id="viewActionBar" class="paper-action-bar" hidden><button id="downloadPdfBtn" class="btn btn-primary" type="button">下载 PDF</button></div>
+  <script src="paper-view.js"></script>
+</body>
+</html>

@@ -5,37 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>错题本管理</title>
 <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" />
 <!-- KaTeX：渲染数学公式 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
 <body>
   <header class="topbar">
-    <h1>错题本管理</h1>
-    <a class="link" href="index.html">← 拍照端</a>
+    <a class="brand" href="admin.html" aria-label="错题本管理"><img src="logo.svg" alt="Math Mastery" /></a>
+    <a class="btn btn-primary topbar-upload" href="index.html">去拍题</a>
   </header>
 
-  <main class="wrap">
+  <main class="wrap admin-wrap">
     <div id="statusBar" class="status-bar">加载中…</div>
 
-    <div class="toolbar">
-      <input id="searchInput" type="search" placeholder="搜索题目/答案/知识点…" />
-      <select id="filterSelect">
-        <option value="all">全部状态</option>
-        <option value="new">未掌握</option>
-        <option value="learning">巩固中</option>
-        <option value="mastered">已掌握</option>
-      </select>
-      <select id="sortSelect">
-        <option value="desc">时间倒序（最新在前）</option>
-        <option value="asc">时间正序（最早在前）</option>
-      </select>
-    </div>
+    <section id="paperRecords" class="paper-records" hidden>
+      <div class="section-heading">
+        <h2>待批改试卷</h2>
+        <div class="section-heading-actions"><span id="paperRecordCount"></span><a class="link" href="papers.html">试卷档案 →</a></div>
+      </div>
+      <div id="paperRecordList"></div>
+    </section>
 
-    <div id="stats" class="stats"></div>
-    <p class="tip">提示：点击「题目」或「答案」区域可直接编辑，数学公式用 LaTeX（如 $x^2$、$\frac{3}{4}$）。</p>
-    <div id="list" class="q-list"></div>
+    <section class="question-bank">
+      <div class="section-heading"><h2>错题库</h2></div>
+      <div id="stats" class="stats"></div>
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="搜索题目 / 答案 / 知识点…" />
+        <select id="filterSelect">
+          <option value="all">全部状态</option>
+          <option value="new">未掌握</option>
+          <option value="learning">巩固中</option>
+          <option value="mastered">已掌握</option>
+        </select>
+        <select id="sortSelect">
+          <option value="desc">时间倒序</option>
+          <option value="asc">时间正序</option>
+        </select>
+      </div>
+      <div id="list" class="q-list"></div>
+    </section>
+
+    <section id="editorPanel" class="panel editor-panel" hidden>
+      <div class="editor-head">
+        <h2>单题修改</h2>
+        <button id="editorCloseBtn" class="btn-mini cancel" type="button">关闭</button>
+      </div>
+      <div class="editor-grid">
+        <label>
+          <span>知识点</span>
+          <input id="editTopic" type="text" placeholder="如：一元二次方程" />
+        </label>
+        <label>
+          <span>状态</span>
+          <select id="editStatus">
+            <option value="new">未掌握</option>
+            <option value="learning">巩固中</option>
+            <option value="mastered">已掌握</option>
+          </select>
+        </label>
+        <label class="full">
+          <span>题目</span>
+          <textarea id="editText" rows="5" placeholder="题目内容，数学公式可用 LaTeX"></textarea>
+        </label>
+        <label class="full">
+          <span>答案</span>
+          <textarea id="editAnswer" rows="3" placeholder="仅填写最终答案，不写过程"></textarea>
+        </label>
+      </div>
+      <div class="editor-actions">
+        <button id="editorSaveBtn" class="btn-mini save" type="button">保存本题</button>
+      </div>
+    </section>
   </main>
+
+  <aside id="composeBar" class="compose-bar">
+    <div id="composeDefault" class="compose-content">
+      <div><strong>组卷练习</strong><span>从当前错题库中选择题目，生成巩固练习卷。</span></div>
+      <div class="compose-actions"><button id="autoPaperBtn" class="btn btn-success" type="button">自动出题</button><button id="selectPaperBtn" class="btn btn-primary" type="button">选择出题</button></div>
+    </div>
+    <div id="composeSelect" class="compose-content" hidden>
+      <label class="select-all"><input id="selectAllPaper" type="checkbox" /><span>全部选择</span></label>
+      <span id="paperSelectionCount">已选 0 道题</span>
+      <div class="compose-actions"><button class="btn btn-ghost paper-mode-exit" type="button">退出</button><button id="paperSelectionNextBtn" class="btn btn-primary" type="button">下一步，去排版</button></div>
+    </div>
+    <div id="composeAuto" class="compose-content" hidden>
+      <div class="compose-auto-label">从当前筛选结果自动出题</div>
+      <div class="compose-actions"><button class="btn btn-ghost paper-mode-exit" type="button">退出</button><button class="btn btn-ghost auto-count" data-count="4" type="button">4 道题</button><button class="btn btn-ghost auto-count" data-count="6" type="button">6 道题</button><button class="btn btn-ghost auto-count" data-count="8" type="button">8 道题</button><button class="btn btn-ghost auto-count" data-count="10" type="button">10 道题</button></div>
+    </div>
+  </aside>
+
+  <dialog id="historyDialog" class="history-dialog">
+    <div class="editor-head">
+      <h2 id="historyTitle">答题记录</h2>
+      <button id="historyCloseBtn" class="btn-mini cancel" type="button">关闭</button>
+    </div>
+    <div id="historyList" class="history-list"></div>
+  </dialog>
 
   <script src="admin.js"></script>
 </body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>试卷批改</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>试卷批改</h1>
+    <a class="link" href="admin.html">← 返回题库</a>
+  </header>
+  <main class="wrap mark-wrap">
+    <div id="markStatus" class="status-bar">加载试卷中…</div>
+    <div id="markList" class="mark-list"></div>
+  </main>
+  <div id="markActionBar" class="paper-action-bar" hidden>
+    <span id="markProgress">已批改 0 / 0 题</span>
+    <button id="finishMarkBtn" class="btn btn-primary" type="button" disabled>批改完毕</button>
+  </div>
+  <script src="mark.js"></script>
+</body>
+</html>
