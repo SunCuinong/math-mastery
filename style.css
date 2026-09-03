@@ -154,6 +154,18 @@ body {
 .res-body { font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
 .res-fig { margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.6; }
 .res-err { margin-top: 6px; font-size: 13px; color: var(--danger); }
+.res-answer {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: #ecfdf5;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ok);
+  font-weight: 600;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
 /* 管理端 */
 .toolbar { display: flex; gap: 10px; margin-bottom: 12px; }
@@ -224,15 +236,86 @@ body {
 .topic { color: var(--muted); }
 .streak { color: var(--muted); }
 .fig { color: var(--muted); }
+.q-block {
+  margin: 6px 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background .15s, border-color .15s;
+  cursor: text;
+}
+.q-block:hover { background: #f9fafb; border-color: var(--border); }
+.q-block.editing { background: #fff; border-color: var(--primary); cursor: default; }
+
+.q-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
 .q-text {
-  font-size: 14px;
-  line-height: 1.7;
-  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: normal;
   word-break: break-word;
 }
+.q-answer {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--ok);
+  font-weight: 600;
+  white-space: normal;
+  word-break: break-word;
+}
+.muted { color: #9ca3af; font-weight: 400; }
+
+/* 编辑态 */
+.edit-area {
+  width: 100%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.edit-tip {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0;
+  line-height: 1.6;
+}
+.edit-tip code {
+  background: #f3f4f6;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.edit-btns { display: flex; gap: 8px; }
+.btn-mini {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+}
+.btn-mini.save { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-mini.save:hover { background: var(--primary-d); }
+.btn-mini.cancel:hover { background: #f3f4f6; }
+
+.tip { font-size: 13px; color: var(--muted); margin: 0 0 12px; line-height: 1.6; }
+
 .q-fig { margin-top: 5px; font-size: 13px; color: var(--muted); line-height: 1.6; }
-.q-time { margin-top: 6px; font-size: 12px; color: #9ca3af; }
+.q-time { margin-top: 8px; font-size: 12px; color: #9ca3af; }
 .q-ops { display: flex; align-items: flex-start; }
+
+/* KaTeX 行内公式不撑高行距 */
+.katex { font-size: 1.05em; }
 
 @media (max-width: 560px) {
   .q-card { flex-direction: column; }

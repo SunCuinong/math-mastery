@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>错题本管理</title>
 <link rel="stylesheet" href="style.css" />
+<!-- KaTeX：渲染数学公式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -16,16 +19,21 @@
     <div id="statusBar" class="status-bar">加载中…</div>
 
     <div class="toolbar">
-      <input id="searchInput" type="search" placeholder="搜索题目文字/知识点…" />
+      <input id="searchInput" type="search" placeholder="搜索题目/答案/知识点…" />
       <select id="filterSelect">
-        <option value="all">全部</option>
+        <option value="all">全部状态</option>
         <option value="new">未掌握</option>
         <option value="learning">巩固中</option>
         <option value="mastered">已掌握</option>
       </select>
+      <select id="sortSelect">
+        <option value="desc">时间倒序（最新在前）</option>
+        <option value="asc">时间正序（最早在前）</option>
+      </select>
     </div>
 
     <div id="stats" class="stats"></div>
+    <p class="tip">提示：点击「题目」或「答案」区域可直接编辑，数学公式用 LaTeX（如 $x^2$、$\frac{3}{4}$）。</p>
     <div id="list" class="q-list"></div>
   </main>
 

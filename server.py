@@ -52,8 +52,8 @@ def build_ssl_context():
 
 SSL_CTX = build_ssl_context()
 
-# 识别题目用的提示词：输出结构化 JSON，公式用 LaTeX
-OCR_PROMPT = """你是一个专业的中小学数学题目识别助手。请仔细识别这张图片中的数学题目。
+# 识别题目用的提示词：输出结构化 JSON，公式用 LaTeX，同时给出答案
+OCR_PROMPT = """你是一个专业的中小学数学题目识别助手。请仔细识别这张图片中的数学题目，并给出答案。
 
 要求：
 1. 用 LaTeX 表示所有数学公式、符号、分数、根号、上下标等，行内公式用 $...$ 包裹，独立公式用 $$...$$ 包裹。
@@ -61,13 +61,19 @@ OCR_PROMPT = """你是一个专业的中小学数学题目识别助手。请仔�
 3. 只输出题目本身。如果图片上有手写的答案、解题过程或批改痕迹，请忽略它们。
 4. 题目文字用中文输出，保持原题的意思和表述。
 5. 根据题目内容判断所属知识点。
+6. 在 answer 中给出最终答案。**只要得数，不要解题过程**。
+   - 若有多个小问，按题号分行给出，如："(1) $x=2$ 或 $x=3$\\n(2) $20\\text{ cm}^2$"
+   - 答案中的数学部分同样用 LaTeX 表示。
+   - 若题目是证明题或开放题无法给出单一得数，则给出结论性答案。
+   - 若确实无法作答，answer 填空字符串。
 
 严格按以下 JSON 格式输出，不要输出任何其他内容：
 {
   "text": "题目的完整文字内容，数学部分用 LaTeX",
   "has_figure": true或false,
   "figure_desc": "图形详细描述，没有图形则为空字符串",
-  "topic": "知识点分类，如：一元二次方程 / 平面几何 / 分数运算 / 概率统计"
+  "topic": "知识点分类，如：一元二次方程 / 平面几何 / 分数运算 / 概率统计",
+  "answer": "最终答案，只要得数不要过程，数学部分用 LaTeX"
 }
 """
 
@@ -182,6 +188,7 @@ def ocr_question(api_key, model, image_bytes, mime_type):
         "has_figure": bool(data.get("has_figure", False)),
         "figure_desc": str(data.get("figure_desc", "")).strip(),
         "topic": str(data.get("topic", "")).strip(),
+        "answer": str(data.get("answer", "")).strip(),
     }, None
 
 
@@ -328,7 +335,7 @@ class Handler(BaseHTTPRequestHandler):
                 "has_figure": info["has_figure"] if info else False,
                 "figure_desc": info["figure_desc"] if info else "",
                 "topic": info["topic"] if info else "",
-                "answer": "",
+                "answer": info["answer"] if info else "",
                 "status": "new",        # new / learning / mastered
                 "streak": 0,
                 "history": [],

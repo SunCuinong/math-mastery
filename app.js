@@ -284,6 +284,7 @@ uploadBtn.addEventListener('click', async () => {
         card.innerHTML = `
           <div class="res-head">第 ${i + 1} 题 · ${escapeHtml(q.topic || '未分类')}</div>
           <div class="res-body">${escapeHtml(q.text || '(未识别到文字)')}</div>
+          ${q.answer ? `<div class="res-answer">答案：${escapeHtml(q.answer)}</div>` : ''}
           ${q.has_figure ? `<div class="res-fig">🖼 图形：${escapeHtml(q.figure_desc)}</div>` : ''}
           ${q.ocrError ? `<div class="res-err">⚠️ ${escapeHtml(q.ocrError)}</div>` : ''}`;
       } else {
