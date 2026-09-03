@@ -10,16 +10,18 @@
 </head>
 <body>
   <header class="topbar">
-    <h1>试卷批改</h1>
+    <a class="brand" href="admin.html" aria-label="Math Mastery 批改"><img src="logo.svg" alt="Math Mastery" /><span class="brand-sep">·</span><span class="brand-page">批改</span></a>
     <a class="link" href="admin.html">← 返回题库</a>
   </header>
   <main class="wrap mark-wrap">
     <div id="markStatus" class="status-bar">加载试卷中…</div>
     <div id="markList" class="mark-list"></div>
   </main>
-  <div id="markActionBar" class="paper-action-bar" hidden>
-    <span id="markProgress">已批改 0 / 0 题</span>
-    <button id="finishMarkBtn" class="btn btn-primary" type="button" disabled>批改完毕</button>
+  <div id="markActionBar" class="bottom-bar floating" hidden>
+    <div class="bottom-bar-inner">
+      <span id="markProgress">已批改 0 / 0 题</span>
+      <button id="finishMarkBtn" class="btn btn-primary" type="button" disabled>批改完毕</button>
+    </div>
   </div>
   <script src="mark.js"></script>
 </body>

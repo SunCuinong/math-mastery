@@ -195,17 +195,20 @@ function render() {
           ${renderHistoryDots(q)}
         </div>
 
+        <!-- 顺序：题目 → 图 → 图形解释及按钮 → 答案 → 时间 -->
         <div class="q-block" data-field="text" data-idx="${idx}">
           <div class="q-value q-text">${renderMath(q.text || '(未识别到文字)')}</div>
         </div>
+
+        ${q.cleanOriginalImage ? `<div class="clean-figure"><img src="${escapeHtml(q.cleanOriginalImage)}" alt="AI 清洁后的原题图" /></div>` : (q.cleanFigureSvg ? `<div class="clean-figure"><img src="${svgDataUrl(q.cleanFigureSvg)}" alt="AI 重绘的清洁图" /></div>` : '')}
+
+        ${q.has_figure ? `<div class="figure-panel"><div>${q.figure_desc ? `<b>图形：</b>${escapeHtml(q.figure_desc)}` : '已识别到题目插图'}</div><div class="figure-panel-actions"><button class="btn-mini clean-original-btn" data-id="${escapeHtml(q.id)}" type="button">${q.cleanOriginalImage ? '重新清洁原图' : '使用原图清洁'}</button><button class="btn-mini clean-figure-btn" data-id="${escapeHtml(q.id)}" type="button">${q.cleanFigureSvg ? '重新生成清洁图' : '生成清洁图'}</button></div></div>` : ''}
 
         <div class="q-block" data-field="answer" data-idx="${idx}">
           <div class="q-label">答案</div>
           <div class="q-value q-answer">${q.answer ? renderMath(q.answer) : '<span class="muted">（暂无答案）</span>'}</div>
         </div>
 
-        ${q.cleanOriginalImage ? `<div class="clean-figure"><img src="${escapeHtml(q.cleanOriginalImage)}" alt="AI 清洁后的原题图" /></div>` : (q.cleanFigureSvg ? `<div class="clean-figure"><img src="${svgDataUrl(q.cleanFigureSvg)}" alt="AI 重绘的清洁图" /></div>` : '')}
-        ${q.has_figure ? `<div class="figure-panel"><div>${q.figure_desc ? `<b>图形：</b>${escapeHtml(q.figure_desc)}` : '已识别到题目插图'}</div><div class="figure-panel-actions"><button class="btn-mini clean-original-btn" data-id="${escapeHtml(q.id)}" type="button">${q.cleanOriginalImage ? '重新清洁原图' : '使用原图清洁'}</button><button class="btn-mini clean-figure-btn" data-id="${escapeHtml(q.id)}" type="button">${q.cleanFigureSvg ? '重新生成清洁图' : '生成清洁图'}</button></div></div>` : ''}
         <div class="q-time">${escapeHtml(q.createdAt || '')}</div>
       </div>
       <div class="q-ops">

@@ -9,9 +9,11 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
 <body class="paper-page">
-  <header class="topbar"><h1>试卷 PDF 预览</h1></header>
+  <header class="topbar">
+    <a class="brand" href="admin.html" aria-label="Math Mastery 预览"><img src="logo.svg" alt="Math Mastery" /><span class="brand-sep">·</span><span class="brand-page">预览</span></a>
+  </header>
   <main class="paper-wrap"><div id="viewStatus" class="status-bar">加载试卷中…</div><div id="viewPages" class="paper-pages" hidden></div></main>
-  <div id="viewActionBar" class="paper-action-bar" hidden><button id="downloadPdfBtn" class="btn btn-primary" type="button">下载 PDF</button></div>
+  <div id="viewActionBar" class="bottom-bar floating" hidden><div class="bottom-bar-inner"><button id="downloadPdfBtn" class="btn btn-primary" type="button">下载 PDF</button></div></div>
   <script src="paper-view.js"></script>
 </body>
 </html>
