@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>错题拍照</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>错题拍照</h1>
+    <a class="link" href="admin.html">管理端 →</a>
+  </header>
+
+  <main class="wrap">
+    <div id="statusBar" class="status-bar">检查服务状态…</div>
+
+    <!-- 未选图时 -->
+    <section id="pickPanel" class="panel">
+      <button id="cameraBtn" class="btn btn-primary btn-big">📷 拍照</button>
+      <button id="albumBtn" class="btn btn-ghost btn-big">🖼 从相册选</button>
+      <p class="hint">拍完可在照片上框出每一道题，一页可框多道。</p>
+    </section>
+
+    <!-- 选图后：框选 -->
+    <section id="editPanel" class="panel" hidden>
+      <div class="canvas-wrap">
+        <canvas id="cv"></canvas>
+      </div>
+      <p class="hint">在题目上<b>按住拖动</b>画框，可框出多道题。</p>
+
+      <div class="row-btns">
+        <button id="clearBoxesBtn" class="btn btn-ghost">清空框选</button>
+        <button id="reselectBtn" class="btn btn-ghost">重选照片</button>
+      </div>
+
+      <div id="boxList" class="box-list"></div>
+
+      <button id="uploadBtn" class="btn btn-primary btn-big" disabled>上传 0 道题</button>
+      <div id="progress" class="progress" hidden></div>
+    </section>
+
+    <!-- 识别结果 -->
+    <section id="resultPanel" class="panel" hidden>
+      <h2 class="sec-title">识别结果</h2>
+      <div id="resultList" class="result-list"></div>
+      <div class="row-btns">
+        <button id="continueBtn" class="btn btn-primary">继续拍照</button>
+        <a class="btn btn-ghost" href="admin.html">去管理端查看</a>
+      </div>
+    </section>
+
+    <input id="fileInput" type="file" accept="image/*" capture="environment" hidden />
+    <input id="fileInput2" type="file" accept="image/*" hidden />
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

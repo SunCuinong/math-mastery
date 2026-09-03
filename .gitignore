@@ -1,0 +1,9 @@
+# API 密钥（切勿提交）
+config.json
+
+# 上传的题目图片（体积大，不入库）
+uploads/
+
+__pycache__/
+*.pyc
+.DS_Store
