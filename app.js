@@ -67,25 +67,40 @@ function setupImage(img) {
   srcImg = img;
   boxes = [];
   drawing = null;
-  renderBoxList();
 
-  // 按容器宽度等比缩放显示（同时限制最大尺寸，保证手机流畅）
-  const maxW = Math.min(cv.parentElement.clientWidth, 1200);
-  const maxH = Math.min(window.innerHeight * 0.55, 1400);
+  // 关键：必须先显示面板，隐藏元素的 clientWidth 为 0 会导致 canvas 尺寸算成 0
+  pickPanel.hidden = true;
+  resultPanel.hidden = true;
+  editPanel.hidden = false;
+
+  // 按容器宽度铺满显示（不按高度压缩，避免图片被缩得太小；超长图靠页面滚动查看）
+  const availW = cv.parentElement.clientWidth || (window.innerWidth - 40);
+  const maxW = Math.max(240, Math.min(availW, 1200));
+  const maxH = 1400; // 仅防止极端长图
+
   let w = img.naturalWidth, h = img.naturalHeight;
-  const s1 = maxW / w, s2 = maxH / h;
-  const s = Math.min(s1, s2, 1);
-  w = Math.round(w * s); h = Math.round(h * s);
+  if (!w || !h) { w = 800; h = 600; }
+
+  let s = Math.min(maxW / w, 1);
+  if (h * s > maxH) s = maxH / h;
+
+  // iOS Safari canvas 像素上限保护（约 16M 像素）
+  const MAX_PIXELS = 16 * 1024 * 1024;
+  if (w * s * h * s > MAX_PIXELS) s = Math.sqrt(MAX_PIXELS / (w * h));
+
+  w = Math.max(1, Math.round(w * s));
+  h = Math.max(1, Math.round(h * s));
 
   cv.width = w; cv.height = h;
   cv.style.width = w + 'px';
   cv.style.height = h + 'px';
   viewScale = s;
 
-  pickPanel.hidden = true;
-  editPanel.hidden = false;
-  resultPanel.hidden = true;
+  renderBoxList();
   draw();
+
+  // 滚动到框选区，方便立即操作
+  cv.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function resetAll() {
@@ -173,14 +188,31 @@ function draw() {
 }
 
 /* ============ 已选框列表 ============ */
-function cropDataURL(box) {
-  const c = document.createElement('canvas');
-  c.width = box.w; c.height = box.h;
-  const cc = c.getContext('2d');
-  cc.fillStyle = '#fff';
-  cc.fillRect(0, 0, box.w, box.h);
-  cc.drawImage(srcImg, box.x, box.y, box.w, box.h, 0, 0, box.w, box.h);
-  return c.toDataURL('image/jpeg', 0.85);
+// 上传用的最大边长，避免手机上传超大 base64 导致超时
+const UPLOAD_MAX_SIDE = 1600;
+
+function cropDataURL(box, maxSide) {
+  const limit = maxSide || UPLOAD_MAX_SIDE;
+  // 先按原图裁剪
+  const tmp = document.createElement('canvas');
+  tmp.width = box.w; tmp.height = box.h;
+  const tc = tmp.getContext('2d');
+  tc.fillStyle = '#fff';
+  tc.fillRect(0, 0, box.w, box.h);
+  tc.drawImage(srcImg, box.x, box.y, box.w, box.h, 0, 0, box.w, box.h);
+
+  // 若裁剪结果过大，等比缩小后再上传
+  const s = Math.min(1, limit / Math.max(box.w, box.h));
+  if (s >= 1) return tmp.toDataURL('image/jpeg', 0.85);
+
+  const out = document.createElement('canvas');
+  out.width = Math.max(1, Math.round(box.w * s));
+  out.height = Math.max(1, Math.round(box.h * s));
+  const oc = out.getContext('2d');
+  oc.fillStyle = '#fff';
+  oc.fillRect(0, 0, out.width, out.height);
+  oc.drawImage(tmp, 0, 0, out.width, out.height);
+  return out.toDataURL('image/jpeg', 0.85);
 }
 
 function renderBoxList() {
@@ -195,7 +227,7 @@ function renderBoxList() {
     const item = document.createElement('div');
     item.className = 'box-item';
     const thumb = document.createElement('img');
-    thumb.src = cropDataURL(b);
+    thumb.src = cropDataURL(b, 320); // 缩略图用小尺寸，列表渲染更快
     const no = document.createElement('span');
     no.className = 'box-no';
     no.textContent = i + 1;
