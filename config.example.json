@@ -1,5 +1,5 @@
 {
   "gemini_api_key": "在这里填入你的 Gemini API Key",
-  "model": "gemini-2.0-flash",
+  "model": "gemini-3.6-flash",
   "port": 8788
 }

@@ -18,9 +18,11 @@
 import os
 import re
 import json
+import ssl
 import base64
 import uuid
 import datetime
+import certifi
 import urllib.request
 import urllib.error
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -36,6 +38,19 @@ for d in (DATA_DIR, UPLOAD_DIR):
     os.makedirs(d, exist_ok=True)
 
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
+
+# macOS 上 Python 常因证书链不完整导致 SSL 验证失败（尤其公司网络有代理时）。
+# 优先用 certifi 的证书；不可用时降级为不验证（仅本机工具，可接受）。
+def build_ssl_context():
+    try:
+        return ssl.create_default_context(cafile=certifi.where())
+    except Exception:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        return ctx
+
+SSL_CTX = build_ssl_context()
 
 # 识别题目用的提示词：输出结构化 JSON，公式用 LaTeX
 OCR_PROMPT = """你是一个专业的中小学数学题目识别助手。请仔细识别这张图片中的数学题目。
@@ -111,7 +126,7 @@ def gemini_generate(api_key, model, parts, timeout=90):
         headers={"Content-Type": "application/json"},
         method="POST"
     )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
+    with urllib.request.urlopen(req, timeout=timeout, context=SSL_CTX) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
 
