@@ -6,57 +6,77 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>错题拍照</title>
 <link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+  /* 拍照页局部样式：防止 iOS 长按弹出菜单 / 选中，影响框选 */
+  #cv {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* 宽屏（桌面）下始终预留滚动条位置：选图后图片高度撑出滚动条会让内容
+     可用宽变化，导致 canvas 首屏比视口宽出十几像素、右侧裁切。 */
+  @media (min-width: 561px) {
+    body { overflow-y: scroll; }
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="admin.html" aria-label="Math Mastery 拍题"><img src="logo.svg" alt="Math Mastery" /><span class="brand-sep">·</span><span class="brand-page">拍题</span></a>
-    <a class="link" href="admin.html">管理端 →</a>
-  </header>
+  <!-- 编辑工具条：选中照片后出现，吸顶显示 -->
+  <nav id="editToolbar" class="edit-toolbar" hidden>
+    <button id="modeBtn" class="btn-mini on" type="button" title="切换单指操作：框选题目 / 移动画面">✏️ 框选</button>
+    <button id="clearBoxesBtn" class="btn-mini" type="button">清空框选</button>
+    <button id="reselectBtn" class="btn-mini" type="button">重选照片</button>
+    <span class="edit-toolbar-spacer"></span>
+    <button id="zoomOutBtn" class="btn-mini" type="button" aria-label="缩小">－</button>
+    <span id="zoomLabel" class="zoom-label">100%</span>
+    <button id="zoomInBtn" class="btn-mini" type="button" aria-label="放大">＋</button>
+  </nav>
 
-  <main class="wrap">
-    <div id="statusBar" class="status-bar">检查服务状态…</div>
-
-    <!-- 未选图时 -->
-    <section id="pickPanel" class="panel">
+  <!-- 未选图时 -->
+  <main id="pickPanel" class="capture-pick">
+    <div class="capture-pick-btns">
       <button id="cameraBtn" class="btn btn-primary btn-big">📷 拍照</button>
       <button id="albumBtn" class="btn btn-ghost btn-big">🖼 从相册选</button>
-      <p class="hint">拍完可在照片上框出每一道题，一页可框多道。</p>
-    </section>
-
-    <!-- 选图后：框选 -->
-    <section id="editPanel" class="panel" hidden>
-      <div class="canvas-wrap">
-        <canvas id="cv"></canvas>
-      </div>
-      <p class="hint">在题目上<b>按住拖动</b>画框，可框出多道题。</p>
-
-      <div class="row-btns">
-        <button id="clearBoxesBtn" class="btn btn-ghost">清空框选</button>
-        <button id="reselectBtn" class="btn btn-ghost">重选照片</button>
-      </div>
-
-      <div id="boxList" class="box-list"></div>
-
-      <button id="uploadBtn" class="btn btn-primary btn-big" disabled>上传 0 道题</button>
-      <div id="progress" class="progress" hidden></div>
-    </section>
-
-    <!-- 识别结果 -->
-    <section id="resultPanel" class="panel" hidden>
-      <h2 class="sec-title">识别结果</h2>
-      <div id="resultList" class="result-list"></div>
-      <div class="row-btns">
-        <button id="continueBtn" class="btn btn-primary">继续拍照</button>
-        <a class="btn btn-ghost" href="admin.html">去管理端查看</a>
-      </div>
-    </section>
-
-    <input id="fileInput" type="file" accept="image/*" capture="environment" hidden />
-    <input id="fileInput2" type="file" accept="image/*" hidden />
+      <p class="hint capture-pick-hint">拍下试卷，在照片上框出每一道题，一页可框多道。</p>
+    </div>
   </main>
 
+  <!-- 选图后：满宽编辑区 -->
+  <main id="editStage" class="capture-stage" hidden>
+    <div class="canvas-wrap">
+      <canvas id="cv"></canvas>
+    </div>
+    <p class="hint capture-hint">单指<b>按住拖动</b>框选题目，点框右上角的<b>红色 ✕</b> 可删除该题；<b>双指捏合</b>缩放。照片较大或放大后，点工具条「✋ 移动」可单指拖动画面。</p>
+  </main>
+
+  <!-- 吸底：识别按钮 -->
+  <footer id="editFooter" class="capture-footer" hidden>
+    <div class="capture-footer-inner">
+      <button id="uploadBtn" class="btn btn-primary btn-big" disabled>上传 0 道题</button>
+    </div>
+  </footer>
+
+  <input id="fileInput" type="file" accept="image/*" capture="environment" hidden />
+  <input id="fileInput2" type="file" accept="image/*" hidden />
+
   <script src="app.js"></script>
+  <script src="pickpass.js"></script>
+  <script>
+    // 从首页顶栏「拍照 / 相册」选图后跳转而来：取出暂存图片，直接进入框选，
+    // 无需在拍照页再选一次。没有待处理图片则保持默认的选图页。
+    (async function () {
+      try {
+        const blob = await PickPass.takePending();
+        if (!blob) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => setupImage(img);
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(blob);
+      } catch (e) { /* 无待处理图片或读取失败：忽略，保持默认选图页 */ }
+    })();
+  </script>
 </body>
 </html>

@@ -13,7 +13,10 @@
 <body>
   <header class="topbar">
     <a class="brand" href="admin.html" aria-label="Math Mastery Home"><img src="logo.svg" alt="Math Mastery" /><span class="brand-sep">·</span><span class="brand-page">Home</span></a>
-    <a class="btn btn-primary topbar-upload" href="index.html">去拍题</a>
+    <div class="topbar-actions">
+      <button type="button" id="topbarCameraBtn" class="btn btn-primary topbar-upload">📷 拍照</button>
+      <button type="button" id="topbarAlbumBtn" class="btn btn-ghost topbar-upload">🖼 相册</button>
+    </div>
   </header>
 
   <main class="wrap admin-wrap">
@@ -102,5 +105,30 @@
   </dialog>
 
   <script src="admin.js"></script>
+
+  <!-- 顶栏「拍照 / 相册」：同页直接调起系统相机/相册，选图后用 IndexedDB 暂存再跳拍照页 -->
+  <input id="fileInput" type="file" accept="image/*" capture="environment" hidden />
+  <input id="fileInput2" type="file" accept="image/*" hidden />
+  <script src="pickpass.js"></script>
+  <script>
+    (function () {
+      const cameraBtn = document.getElementById('topbarCameraBtn');
+      const albumBtn = document.getElementById('topbarAlbumBtn');
+      const fileInput = document.getElementById('fileInput');
+      const fileInput2 = document.getElementById('fileInput2');
+      if (cameraBtn) cameraBtn.addEventListener('click', () => fileInput.click());
+      if (albumBtn) albumBtn.addEventListener('click', () => fileInput2.click());
+      function forward(input) {
+        const file = input.files && input.files[0];
+        input.value = '';
+        if (!file) return;
+        // 暂存成功后跳拍照页自动框选；失败也跳转，拍照页会回退到默认选图页
+        PickPass.savePending(file).then(() => { location.href = 'index.html'; })
+          .catch(err => { console.error(err); location.href = 'index.html'; });
+      }
+      fileInput.addEventListener('change', e => forward(e.target));
+      fileInput2.addEventListener('change', e => forward(e.target));
+    })();
+  </script>
 </body>
 </html>
